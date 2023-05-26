@@ -5,14 +5,13 @@ import br.com.odevpedro.loja.imposto.Orcamento;
 import java.math.BigDecimal;
 
 public class CalculadoraDeDesconto {
+    //Caso a primeira regra não seja satisfátoria, chame a próxima
     public BigDecimal calcular(Orcamento orcamento){
-        if (orcamento.getItens() > 5) {
-            return orcamento.getValor().multiply(new BigDecimal("0.1"));
+
+        BigDecimal desconto = new DescOrcamentoMaiorCincoItens().calcular(orcamento);
+        if (desconto.equals(BigDecimal.ZERO)) {
+            desconto = new DescOrcamentoMaiorQuientos().calcular(orcamento);
         }
-        if (orcamento.getValor().compareTo(new BigDecimal("500")) > 0 ){
-            return orcamento.getValor().multiply(new BigDecimal("0.1"));
-        }
-        
         return BigDecimal.ZERO;
     }
 }
