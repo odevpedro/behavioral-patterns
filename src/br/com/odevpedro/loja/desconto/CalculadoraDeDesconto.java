@@ -12,6 +12,7 @@ public class CalculadoraDeDesconto {
         if (orcamento.getValor().compareTo(new BigDecimal("500")) > 0 ){
             return orcamento.getValor().multiply(new BigDecimal("0.1"));
         }
+        
         return BigDecimal.ZERO;
     }
 }
